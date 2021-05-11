@@ -1,0 +1,15 @@
+{
+    "testEnvironment": "node",
+    "transform": {
+        "^.+\\.(j|t)sx?$": "ts-jest"
+    },
+    "testRegex": "(__tests___/.*|(\\.|/)(test|spec))\\.(t|j)sx?$",
+    "moduleFileExtensions": [
+        "ts",
+        "js",
+        "tsx",
+        "jsx",
+        "json",
+        "node"
+    ]
+}
