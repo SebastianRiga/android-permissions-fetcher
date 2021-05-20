@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Not for use by third-party applications",
+        "value": null,
+        "description": "This permissions is not to be used by third-party applications and is reserved for system apps only."
+    },
+    {
+        "name": "Should only be requested by the System",
+        "value": null,
+        "description": "Permissions is only available for a specific system service or application."
+    }
+]

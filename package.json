@@ -1,9 +1,9 @@
 {
   "name": "android-permissions-fetcher",
-  "version": "1.0.0",
-  "description": "Loads all available android permissions and their data from the official google page and returns them as a js object, formatted json or writes them to a file.",
-  "main": "dist/api.js",
-  "author": "Sebastian Riga",
+  "version": "1.1.0",
+  "description": "Loads all available android permissions and their data from the official google page and returns them as an object, formatted json or writes them to a file.",
+  "main": "dist/src/android-permissions-fetcher.js",
+  "author": "Sebastian Riga <sebastian.riga.development@gmail.com>",
   "readme": "README.md",
   "license": "MIT",
   "private": true,
@@ -18,21 +18,23 @@
   ],
   "scripts": {
     "test": "jest --config jestconfig.json",
-    "build": "tsc",
+    "build": "yarn clean:dist && tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "coverage": "yarn clean:coverage && yarn test --coverage",
+    "docs": "yarn clean:docs && typedoc",
     "clean:dist": "rimraf dist",
     "clean:coverage": "rimraf coverage",
+    "clean:docs": "rimraf docs",
     "clean:node_modules": "rimraf node_modules",
-    "superclean": "yarn clean:dist && yarn clean:coverage && yarn clean:node_modules",
+    "clean:auxiliary": "yarn clean:coverage && yarn clean:docs",
+    "superclean": "yarn clean:dist && yarn clean:coverage && yarn clean:docs && yarn clean:node_modules",
     "prepare": "yarn build",
     "prepublish": "yarn test && yarn lint",
     "version": "yarn format && git add --all src",
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
-    "@types/jest": "^26.0.23",
     "axios": "^0.21.1",
     "jest": "^26.6.3",
     "node-html-parser": "^3.2.0",
@@ -43,11 +45,13 @@
     "tslint-config-prettier": "^1.18.0"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
     "@types/object-hash": "^2.1.0",
     "nodemon": "^2.0.7",
     "rimraf": "^3.0.2",
     "ts-node": "^9.1.1",
+    "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
   }
 }

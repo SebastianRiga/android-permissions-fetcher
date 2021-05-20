@@ -1,14 +1,29 @@
-/// Package
+/*
+ * ############################
+ * # Imports
+ * ############################
+ */
+
+/// App Package
 import pkg from '../../package.json';
 
 /// Types
-import Imprint from 'src/types/imprint';
+import { Imprint } from '../interfaces/imprint';
 
-const createVersionImprint = (): Imprint => ({
+/*
+ * ############################
+ * # Business Logic
+ * ############################
+ */
+
+/**
+ * Creates an imprint object with developer and project related information,
+ * to be attached to a {@link PermissionsResponse}.
+ * @returns Imprint containing developer and project information.
+ */
+export const createVersionImprint = (): Imprint => ({
   createdWith: pkg.name,
   version: pkg.version,
   author: pkg.author,
   license: pkg.license,
 });
-
-export default createVersionImprint;

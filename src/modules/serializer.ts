@@ -7,9 +7,12 @@
 /// HTML Parser
 import parse, { HTMLElement, Options } from 'node-html-parser';
 
-/// Types
-import VersionInfo from 'src/types/version-info';
-import AndroidPermission from 'src/types/android-permission';
+/// Protection level parser
+import { getProtectionLevelsFromString } from './protection-levels';
+
+/// Interfaces
+import { VersionInfo } from '../interfaces/version-info';
+import { AndroidPermission } from '../interfaces/android-permission';
 
 /*
  * ############################
@@ -26,11 +29,11 @@ const permissionSourceCodeRepresentationSelector: string = 'pre.api-signature';
 
 const constantValuePattern: RegExp = /^'?Constant value:'?/i;
 const protectionLevelPattern: RegExp = /^'?Protection level:'?/i;
-const forbiddenLevelPattern: RegExp = /^'?Not for use by third-party applications/i;
+const forbiddenLevelPattern: RegExp = /(^'?Not for use by third-party applications)|(^'?Should only be requested by the System)/i;
 
 const stringSanitizer: RegExp = /\s\s+/g;
 
-const parserOptions: Partial<Options> = {
+const parserOptions: Options = {
   lowerCaseTagName: false,
   comment: false,
   blockTextElements: {
@@ -62,7 +65,7 @@ const sanitizeString = (content: string): string => content.replace(stringSaniti
 
 /*
  * ############################
- * # Parsing functions
+ * # Business Logic
  * ############################
  */
 
@@ -134,10 +137,13 @@ const parseTextContent = (element: HTMLElement) => {
   const constantValueParagraph = paragraphList.find(constantValueFinder);
 
   const description = descriptionParts.join('\n');
-  const protectionLevel = protectionLevelParagraph ? protectionLevelParagraph.replace(protectionLevelPattern, '') : 'Unknown';
+
+  const protectionLevelRaw = protectionLevelParagraph?.replace(protectionLevelPattern, '');
+  const protectionLevelInfo = getProtectionLevelsFromString(protectionLevelRaw);
+
   const constantValue = constantValueParagraph ? constantValueParagraph.replace(constantValuePattern, '') : 'Unknown';
 
-  return { description, protectionLevel, constantValue };
+  return { description, protectionLevelInfo, constantValue };
 };
 
 /**
@@ -155,7 +161,7 @@ const transformHtmlElement = (element: HTMLElement): AndroidPermission => {
 
   const textContent = parseTextContent(element);
   const description = textContent.description;
-  const protectionLevel = textContent.protectionLevel;
+  const protectionLevel = textContent.protectionLevelInfo;
   const constantValue = textContent.constantValue;
 
   return {
@@ -168,15 +174,7 @@ const transformHtmlElement = (element: HTMLElement): AndroidPermission => {
   };
 };
 
-/*
- * ############################
- * # Export
- * ############################
- */
-
-const serialize = (html: string): AndroidPermission[] =>
+export const serialize = (html: string): AndroidPermission[] =>
   parse(html, parserOptions)
     .querySelectorAll(permissionsSelector)
     .map((element) => transformHtmlElement(element));
-
-export default serialize;

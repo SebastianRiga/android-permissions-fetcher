@@ -10,33 +10,20 @@ import fs from 'fs';
 /// Networking
 import axios, { AxiosResponse } from 'axios';
 
+/// Config
+import { apfConfig } from './util/apf-config';
+
 /// Internal modules
-import serialize from './modules/serializer';
-import createVersionImprint from './modules/imprint';
-import createFingerprint from './modules/fingerprint';
+import { serialize } from './modules/serializer';
+import { createVersionImprint } from './modules/imprint';
+import { createFingerprint } from './modules/fingerprint';
 
 /// Types
-import PermissionsResponse from './types/permissions-response';
+import { PermissionsResponse } from './interfaces/permissions-response';
 
 /*
  * ############################
- * # Config
- * ############################
- */
-
-/**
- * The base host of the permissions html document.
- */
-const host: string = 'https://developer.android.com';
-
-/**
- * The specific endpoint on the host where html document is located.
- */
-const endpoint: string = '/reference/android/Manifest.permission.html';
-
-/*
- * ############################
- * # API Implementation
+ * # Business Logic
  * ############################
  */
 
@@ -47,7 +34,7 @@ const endpoint: string = '/reference/android/Manifest.permission.html';
  * @see host
  * @see endpoint
  */
-const fetch = (): Promise<AxiosResponse<string>> => axios.get<string>(`${host}${endpoint}`);
+const fetch = (): Promise<AxiosResponse<string>> => axios.get<string>(apfConfig.absoluteUrl());
 
 /**
  * Fetches the permissions data and serializes it into a
@@ -106,16 +93,17 @@ const fetchPermissionsFile = (filePath: string): Promise<void> =>
 /**
  * GET only api that retrieves a list of all available Android permissions
  * and their metadata.
+ * @name android-permissions-fetcher
  * @see fetch
  * @see fetchPermissions
  * @see fetchPermissionsJson
  * @see fetchPermissionsFile
  */
-const API = {
+const apf = {
   fetch,
   fetchPermissions,
   fetchPermissionsJson,
   fetchPermissionsFile,
 };
 
-export default API;
+export default apf;

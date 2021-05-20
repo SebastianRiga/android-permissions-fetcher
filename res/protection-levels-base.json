@@ -1,0 +1,37 @@
+[
+    {
+        "name": "normal",
+        "value": 0,
+        "description": "Base permission type: a lower-risk permission that gives an application access to isolated application-level features, with minimal risk to other applications, the system, or the user. The system automatically grants this type of permission to a requesting application at installation, without asking for the user's explicit approval (though the user always has the option to review these permissions before installing)."
+    },
+    {
+        "name": "dangerous",
+        "value": 1,
+        "description": "Base permission type: a higher-risk permission that would give a requesting application access to private user data or control over the device that can negatively impact the user. Because this type of permission introduces potential risk, the system may not automatically grant it to the requesting application. For example, any dangerous permissions requested by an application may be displayed to the user and require confirmation before proceeding, or some other approach may be taken to avoid the user automatically allowing the use of such facilities."
+    },
+    {
+        "name": "signature",
+        "value": 2,
+        "description": "Base permission type: a permission that the system is to grant only if the requesting application is signed with the same certificate as the application that declared the permission. If the certificates match, the system automatically grants the permission without notifying the user or asking for the user's explicit approval."
+    },
+    {
+        "name": "internal",
+        "value": 4,
+        "description": "Base permission type: a permission that is managed internally by the system and only granted according to the protection flags."
+    },
+    {
+        "name": "signatureOrSystem",
+        "value": 3,
+        "description": "Old synonym for \"signature|privileged\". Deprecated in API level 23. Base permission type: a permission that the system is to grant only to packages in the Android system image or that are signed with the same certificates. Please avoid using this option, as the signature protection level should be sufficient for most needs and works regardless of exactly where applications are installed. This permission is used for certain special situations where multiple vendors have applications built in to a system image which need to share specific features explicitly because they are being built together."
+    },
+    {
+        "name": "signature|privileged",
+        "value": 3,
+        "description": "Base permission type: a permission that the system is to grant only to packages in the Android system image or that are signed with the same certificates. Please avoid using this option, as the signature protection level should be sufficient for most needs and works regardless of exactly where applications are installed. This permission is used for certain special situations where multiple vendors have applications built in to a system image which need to share specific features explicitly because they are being built together."
+    },
+    {
+        "name": "system",
+        "value": 10,
+        "description": "Old synonym for \"privileged\". Deprecated in API level 23."
+    }
+]

@@ -11,7 +11,8 @@
     "sourceMap": true,                           /* Generates corresponding '.map' file. */
     "outDir": "dist",                            /* Redirect output structure to the directory. */
     "rootDir": ".",                              /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-    "removeComments": true,                      /* Do not emit comments to output. */
+    "sourceRoot": "src",
+    "removeComments": false,                     /* Do not emit comments to output. */
     "resolveJsonModule": true,                   /* Enable importing .json files */
     "allowSyntheticDefaultImports": true,        /* Allow 'import x from y' when a module doesn't have a default export */
     "typeRoots": [
@@ -49,11 +50,14 @@
   },
   "include": [                                    /* Specifies a list of glob patterns that match files to be included in compilation. If no 'files' or 'include' property is present in a tsconfig.json, the compiler defaults to including all files in the containing directory and subdirectories except those specified by 'exclude'. Requires TypeScript version 2.0 or later. */
     "src",
-    "*.md",
-    "*.md"
+    "res",
+    "README.md",
+    "LICENSE.md"
   ],
   "exclude": [
     "node_modules",
-    "**/__tests__/*"
+    "**/docs/*",
+    "**/__tests__/*",
+    "**/coverage/*"
   ]
 }

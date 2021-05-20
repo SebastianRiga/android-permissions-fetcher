@@ -1,7 +1,7 @@
 {
     "testEnvironment": "node",
     "transform": {
-        "^.+\\.(j|t)sx?$": "ts-jest"
+        "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(__tests___/.*|(\\.|/)(test|spec))\\.(t|j)sx?$",
     "moduleFileExtensions": [

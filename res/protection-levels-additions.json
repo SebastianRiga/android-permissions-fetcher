@@ -1,0 +1,112 @@
+[
+    {
+        "name": "appPredictor",
+        "value": 200000,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to the system app predictor"
+    },
+    {
+        "name": "appop",
+        "value": 40,
+        "description": "Additional flag from base permission type: this permission is closely associated with an app op for controlling access."
+    },
+    {
+        "name": "companion",
+        "value": 800000,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to the system companion device manager service"
+    },
+    {
+        "name": "configurator",
+        "value": 80000,
+        "description": "Additional flag from base permission type: this permission automatically granted to device configurator"
+    },
+    {
+        "name": "development",
+        "value": 20,
+        "description": "Additional flag from base permission type: this permission can also (optionally) be granted to development applications. Although undocumented, the permission state used to be shared by all users (including future users), but it is managed per-user since API level 31."
+    },
+    {
+        "name": "documenter",
+        "value": 40000,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to the document manager"
+    },
+    {
+        "name": "incidentReportApprover",
+        "value": 100000,
+        "description": "Additional flag from base permission type: this permission designates the app that will approve the sharing of incident reports."
+    },
+    {
+        "name": "installer",
+        "value": 100,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to system apps that install packages."
+    },
+    {
+        "name": "instant",
+        "value": 1000,
+        "description": "Additional flag from base permission type: this permission can be granted to instant apps"
+    },
+    {
+        "name": "knownSigner",
+        "value": 8000000,
+        "description": "Additional flag from base permission type: this permission can also be granted if the requesting application is signed by, or has in its signing lineage, any of the certificate digests declared in knownCerts."
+    },
+    {
+        "name": "oem",
+        "value": 4000,
+        "description": "Additional flag from base permission type: this permission can be granted only if its protection level is signature, the requesting app resides on the OEM partition, and the OEM has allowlisted the app to receive this permission by the OEM."
+    },
+    {
+        "name": "pre23",
+        "value": 80,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to apps that target API levels below Build.VERSION_CODES.M (before runtime permissions were introduced)."
+    },
+    {
+        "name": "preinstalled",
+        "value": 400,
+        "description": "Additional flag from base permission type: this permission can be automatically granted any application pre-installed on the system image (not just privileged apps)."
+    },
+    {
+        "name": "privileged",
+        "value": 10,
+        "description": "Additional flag from base permission type: this permission can also be granted to any applications installed as privileged apps on the system image. Please avoid using this option, as the signature protection level should be sufficient for most needs and works regardless of exactly where applications are installed. This permission flag is used for certain special situations where multiple vendors have applications built in to a system image which need to share specific features explicitly because they are being built together."
+    },
+    {
+        "name": "recents",
+        "value": 2000000,
+        "description": "Additional flag from base permission type: this permission will be granted to the recents app."
+    },
+    {
+        "name": "retailDemo",
+        "value": 1000000,
+        "description": "Additional flag from base permission type: this permission will be granted to the retail demo app, as defined by the OEM."
+    },
+    {
+        "name": "role",
+        "value": 4000000,
+        "description": "Additional flag from base permission type: this permission is managed by role."
+    },
+    {
+        "name": "runtime",
+        "value": 2000,
+        "description": "Additional flag from base permission type: this permission can only be granted to apps that target runtime permissions (Build.VERSION_CODES.M and above)"
+    },
+    {
+        "name": "setup",
+        "value": 800,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to the setup wizard app"
+    },
+    {
+        "name": "textClassifier",
+        "value": 10000,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to the system default text classifier"
+    },
+    {
+        "name": "vendorPrivileged",
+        "value": 8000,
+        "description": "Additional flag from base permission type: this permission can be granted to privileged apps in vendor partition."
+    },
+    {
+        "name": "verifier",
+        "value": 200,
+        "description": "Additional flag from base permission type: this permission can be automatically granted to system apps that verify packages."
+    }
+]
