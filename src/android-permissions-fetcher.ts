@@ -28,8 +28,8 @@ import { PermissionsResponse } from './interfaces/permissions-response';
  */
 
 /**
- * Base request that fetches the whole html document
- * and any connected information.
+ * Base request that fetches the whole html document and any connected information.
+ *
  * @returns Promise of the network request.
  * @see host
  * @see endpoint
@@ -37,10 +37,9 @@ import { PermissionsResponse } from './interfaces/permissions-response';
 const fetch = (): Promise<AxiosResponse<string>> => axios.get<string>(apfConfig.absoluteUrl());
 
 /**
- * Fetches the permissions data and serializes it into a
- * base js object.
- * @returns The api response containing an imprint and all
- * fetched permissions as base js object.
+ * Fetches the permissions data and serializes it into a base js object.
+ *
+ * @returns The api response containing an imprint and all fetched permissions as base js object.
  * @see fetch
  * @see createVersionImprint
  * @see serialize
@@ -61,6 +60,7 @@ const fetchPermissions = (): Promise<PermissionsResponse> =>
 
 /**
  * Fetches the permissions data and returns it as a JSON.
+ *
  * @returns JSON representation of the api`s js object.
  * @see fetchPermissions
  */
@@ -76,6 +76,7 @@ const fetchPermissionsJson = (): Promise<string> =>
 
 /**
  * Fetches the permission data and stores it as a json in the passed file (Format: utf-8).
+ *
  * @param filePath The path to the file where the permissions should be written to.
  * @returns Promise of the operation.
  * @see fetchPermissionsJson
@@ -91,8 +92,8 @@ const fetchPermissionsFile = (filePath: string): Promise<void> =>
   });
 
 /**
- * GET only api that retrieves a list of all available Android permissions
- * and their metadata.
+ * GET only api that retrieves a list of all available Android permissions and their metadata.
+ *
  * @name android-permissions-fetcher
  * @see fetch
  * @see fetchPermissions

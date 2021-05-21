@@ -17,8 +17,8 @@ import { Imprint } from '../interfaces/imprint';
  */
 
 /**
- * Creates an imprint object with developer and project related information,
- * to be attached to a {@link PermissionsResponse}.
+ * Creates an imprint object with developer and project related information, to be attached to a {@link PermissionsResponse}.
+ *
  * @returns Imprint containing developer and project information.
  */
 export const createVersionImprint = (): Imprint => ({

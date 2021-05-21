@@ -20,18 +20,18 @@ import { AndroidPermission } from '../interfaces/android-permission';
  * ############################
  */
 
-const deprecationDelimiter: string = 'Deprecated';
+const deprecationDelimiter = 'Deprecated';
 
-const permissionsSelector: string = 'div[data-version-added]';
-const permissionNameSelector: string = 'h3.api-name';
-const permissionApiVersionSelector: string = 'div.api-level';
-const permissionSourceCodeRepresentationSelector: string = 'pre.api-signature';
+const permissionsSelector = 'div[data-version-added]';
+const permissionNameSelector = 'h3.api-name';
+const permissionApiVersionSelector = 'div.api-level';
+const permissionSourceCodeRepresentationSelector = 'pre.api-signature';
 
-const constantValuePattern: RegExp = /^'?Constant value:'?/i;
-const protectionLevelPattern: RegExp = /^'?Protection level:'?/i;
-const forbiddenLevelPattern: RegExp = /(^'?Not for use by third-party applications)|(^'?Should only be requested by the System)/i;
+const constantValuePattern = /^'?Constant value:'?/i;
+const protectionLevelPattern = /^'?Protection level:'?/i;
+const forbiddenLevelPattern = /(^'?Not for use by third-party applications)|(^'?Should only be requested by the System)/i;
 
-const stringSanitizer: RegExp = /\s\s+/g;
+const stringSanitizer = /\s\s+/g;
 
 const parserOptions: Options = {
   lowerCaseTagName: false,
@@ -50,10 +50,7 @@ const parserOptions: Options = {
  * ############################
  */
 
-/**
- *
- * @param text
- */
+/** @param text */
 const descriptionFilter = (text: string) =>
   !protectionLevelPattern.test(text) && !forbiddenLevelPattern.test(text) && !constantValuePattern.test(text);
 
@@ -71,6 +68,7 @@ const sanitizeString = (content: string): string => content.replace(stringSaniti
 
 /**
  * Parses the name of the Android permission.
+ *
  * @param {HTMLElement} element
  * @returns {string} The name of the Android permission.
  */
@@ -80,10 +78,9 @@ const parseName = (element: HTMLElement): string => {
 };
 
 /**
- * Parses the api version information of the Android permission. This includes
- * the api version when it was introduced into the platform and the api version,
- * in which it was deprecated if present. Additionally a flag is appended, which
- * indicates the deprecation status of the permission.
+ * Parses the api version information of the Android permission. This includes the api version when it was introduced into the platform and
+ * the api version, in which it was deprecated if present. Additionally a flag is appended, which indicates the deprecation status of the permission.
+ *
  * @param element
  * @returns An object containing the api version information
  */
@@ -95,10 +92,10 @@ const parseApiVersionInfo = (element: HTMLElement): VersionInfo => {
     return { sinceVersion: '', isDeprecated: false, deprecatedSince: null };
   }
 
-  const sinceVersion = sanitizeString(versionInfo[0]!);
+  const sinceVersion = sanitizeString(versionInfo[0] || 'Error');
 
   if (versionInfo.length === 2) {
-    const deprecationMessage = sanitizeString(versionInfo[1]!);
+    const deprecationMessage = sanitizeString(versionInfo[1] || 'Error');
     const deprecatedSince = `${deprecationDelimiter} ${deprecationMessage}`;
     return { sinceVersion, isDeprecated: true, deprecatedSince };
   }
@@ -107,8 +104,8 @@ const parseApiVersionInfo = (element: HTMLElement): VersionInfo => {
 };
 
 /**
- * Parses the source code representation of the Android permission and strips any excessive
- * information like tags and line breaks from it.
+ * Parses the source code representation of the Android permission and strips any excessive information like tags and line breaks from it.
+ *
  * @param element
  * @returns The source code representation of the Android permission.
  */
@@ -124,10 +121,7 @@ const parseCodeRepresentation = (element: HTMLElement) => {
   return sanitizeString(sourceCodeRepresentation);
 };
 
-/**
- *
- * @param element
- */
+/** @param element */
 const parseTextContent = (element: HTMLElement) => {
   const selection = element.querySelectorAll('p');
   const paragraphList = selection.map((paragraph) => sanitizeString(paragraph.textContent));
@@ -148,8 +142,8 @@ const parseTextContent = (element: HTMLElement) => {
 
 /**
  * Transforms the passed HTMLElement into an AndroidPermission object.
- * @param  element The HTML element containing the permission information
- * in its various child nodes.
+ *
+ * @param element The HTML element containing the permission information in its various child nodes.
  * @returns The parsed AndroidPermission object.
  * @see HTMLElement
  * @see AndroidPermission

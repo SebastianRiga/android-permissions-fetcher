@@ -18,12 +18,11 @@ import { AndroidPermission } from '../interfaces/android-permission';
  */
 
 /**
- * Creates a unique fingerprint for the passed Android permissions array. The hash produced from the array
- * can be used to check if a newly fetched response has an updated version of known permissions
- * or if nothing has changed.
+ * Creates a unique fingerprint for the passed Android permissions array. The hash produced from the array can be used to check if a newly
+ * fetched response has an updated version of known permissions or if nothing has changed.
+ *
  * @param permissions The array of Android permissions for which the fingerprint should be created.
- * @returns Fingerprint object containing the creation timestamp and a unique hash of the passed Android
- * permissions array.
+ * @returns Fingerprint object containing the creation timestamp and a unique hash of the passed Android permissions array.
  */
 export const createFingerprint = (permissions: AndroidPermission[]): FingerprintInfo => ({
   timestamp: new Date().toLocaleString(),

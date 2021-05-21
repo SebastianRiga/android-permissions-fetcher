@@ -19,22 +19,16 @@ import { ProtectionLevelInfo } from '../interfaces/protection-level-info';
  */
 
 /**
- * Array of the base protection levels a permission can have.
- * Consisting of the actual base permissions and the extra permissions,
- * like the restriction to the system or to vendors.
+ * Array of the base protection levels a permission can have. Consisting of the actual base permissions and the extra permissions, like the
+ * restriction to the system or to vendors.
  */
 const standardProtectionLevels: ProtectionLevel[] = [...protectionLevelBase, ...protectionLevelExtra];
 
-/**
- * List of all protection levels that can be used in tandem with the
- * base protection levels.
- */
+/** List of all protection levels that can be used in tandem with the base protection levels. */
 const additionalProtectionLevels: ProtectionLevel[] = protectionLevelAdditions;
 
-/**
- * Regex for splitting the raw protection level string.
- */
-const protectionLevelSplitter: RegExp = /(?!=signature)\|(?!privileged)/i;
+/** Regex for splitting the raw protection level string. */
+const protectionLevelSplitter = /(?!=signature)\|(?!privileged)/i;
 
 /*
  * ############################
@@ -44,6 +38,7 @@ const protectionLevelSplitter: RegExp = /(?!=signature)\|(?!privileged)/i;
 
 /**
  * Fallback object for unknown or not defined protection levels.
+ *
  * @exports
  */
 const protectionLevelUnassigned: ProtectionLevelInfo = {
@@ -58,8 +53,9 @@ const protectionLevelUnassigned: ProtectionLevelInfo = {
 };
 
 /**
- * Reducer function that iterates over all additional parts of a raw protection level string and maps them to their
- * appropriate addition representation.
+ * Reducer function that iterates over all additional parts of a raw protection level string and maps them to their appropriate addition
+ * representation.
+ *
  * @param collector Array in which all recognized additional protection levels are stored and subsequently returned.
  * @param currentElement The current raw protection level addition string.
  * @returns An array containing additional protection levels.
@@ -82,10 +78,9 @@ const protectionLevelAdditionsReducer = (collector: ProtectionLevel[], currentEl
  */
 
 /**
- * Parses a raw string that represents the protection levels of an Android permissions and maps them
- * into an object.
+ * Parses a raw string that represents the protection levels of an Android permissions and maps them into an object.
+ *
  * @param rawProtectionLevels String containing the raw protection levels belonging to an Android Permission.
- * E.g. 'normal', 'signature|privileged', 'normal|installer'.
  * @returns Object containing the base protection level and possible additional protection levels.
  * @exports
  */
@@ -102,7 +97,7 @@ export const getProtectionLevelsFromString = (rawProtectionLevels: string | unde
   }
 
   /** Find the base protection level, one of: 'normal', 'dangerous', 'signature', 'signature|privileged' */
-  const plBaseRaw = protectionLevelParts[0]!.trim();
+  const plBaseRaw = protectionLevelParts[0]?.trim() || 'Error';
   const plBase = standardProtectionLevels.find((level) => plBaseRaw.trim().includes(level.name));
 
   /** Base does not exist and it is not a restricted permission, return {@link protectionLevelUnassigned} */
@@ -113,7 +108,7 @@ export const getProtectionLevelsFromString = (rawProtectionLevels: string | unde
   /** Parse additional protection levels like 'development', 'installer' and 'verifier'. */
   let additions: ProtectionLevel[] = [];
 
-  /** Check if additional protection levels exist  */
+  /** Check if additional protection levels exist */
   if (protectionLevelParts.length > 1) {
     additions = protectionLevelParts.slice(1).reduce(protectionLevelAdditionsReducer, []);
   }
@@ -123,7 +118,7 @@ export const getProtectionLevelsFromString = (rawProtectionLevels: string | unde
 
   /** Return finished {@link ProtectionLevelInfo} object. */
   return {
-    level: plBase!, /// Force unwrap allowed, because of previous null check.
+    level: plBase,
     hasAdditions,
     additions,
   };
