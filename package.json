@@ -1,6 +1,6 @@
 {
   "name": "android-permissions-fetcher",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "Loads all available android permissions and their data from the official google page and returns them as an object, formatted json or writes them to a file.",
   "main": "dist/src/android-permissions-fetcher.js",
   "types": "dist/src/android-permissions-fetcher.d.ts",
