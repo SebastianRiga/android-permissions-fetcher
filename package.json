@@ -1,6 +1,6 @@
 {
   "name": "android-permissions-fetcher",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Loads all available android permissions and their data from the official google page and returns them as an object, formatted json or writes them to a file.",
   "main": "dist/src/android-permissions-fetcher.js",
   "types": "dist/src/android-permissions-fetcher.d.ts",
@@ -36,7 +36,7 @@
     "superclean": "yarn clean:dist && yarn clean:coverage && yarn clean:docs && yarn clean:node_modules",
     "prepare": "yarn build",
     "prepublish": "yarn test && yarn lint",
-    "version": "yarn format && git add --all src",
+    "version": "yarn format && git add --all",
     "postversion": "git push && git push --tags"
   },
   "dependencies": {
